@@ -1,90 +1,58 @@
-﻿//Задача 2: Напишите программу, которая на вход принимает два числа и выдаёт, 
-//какое число большее, а какое меньшее.
-//a = 5; b = 7 -> max = 7
-//a = 2 b = 10 -> max = 10
-//a = -9 b = -3 -> max = -3
+﻿// Задача 10: Напишите программу, которая принимает на вход трёхзначное число и на выходе показывает вторую цифру этого числа.
+// 456 -> 5
+// 782 -> 8
+// 918 -> 1
 
-Console.WriteLine("Задача 2.");
-Console.WriteLine("Ведите число A: ");
-int numA = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Ведите число B: ");
-int numB = Convert.ToInt32(Console.ReadLine());
-
-if (numA > numB)
-{
-    Console.WriteLine($"число А({numA}) больше чем число B({numB})");
-}
-else if (numB > numA)
-{
-    Console.WriteLine($"число B({numB}) больше чем число A({numA})");
-}
-else
-{
-    Console.WriteLine($"Числа A и В равны({numB} = {numA})");
-}
-
-Console.WriteLine($"");
-
-//Задача 4: Напишите программу, которая принимает на вход три числа и выдаёт максимальное из этих чисел.
-// 2, 3, 7 -> 7
-// 44 5 78 -> 78
-// 22 3 9 -> 22
-
-Console.WriteLine("Задача 4.");
-
-//int z = new int[3];
-Console.WriteLine("Введите число 1: ");
-int max = Convert.ToInt32(Console.ReadLine());
-
-int b = Convert.ToInt32(Console.ReadLine());
-int c = Convert.ToInt32(Console.ReadLine());
-
-if (max < b){
-    max = b;
-}
-if (max < c){
-    max = c;
-}
-
-Console.WriteLine($"Максимальное число - {max}");
-
-Console.WriteLine($"");
-
-// Задача 6: Напишите программу, которая на вход принимает число и выдаёт, 
-//является ли число чётным (делится ли оно на два без остатка).
-// 4 -> да
-// -3 -> нет
-// 7 -> нет
-
-Console.WriteLine("Задача 6.");
-Console.WriteLine("Ведите число, для проверки четности: ");
-int number = Convert.ToInt32(Console.ReadLine());
-
-if (numA % 2 == 0)
-{
-    Console.WriteLine("Четное");
-}
-else
-{
-    Console.WriteLine("нечетное");
-}
-Console.WriteLine($"");
-
-
-// Задача 8: Напишите программу, которая на вход принимает число (N), а 
-//на выходе показывает все чётные числа от 1 до N.
-// 5 -> 2, 4
-// 8 -> 2, 4, 6, 8
-
-Console.WriteLine("Задача 8.");
+Console.WriteLine("Задача 10.");
 Console.WriteLine("Введите число: ");
 
-int N = Convert.ToInt32(Console.ReadLine());
-int index = 0;
+int num1 = Convert.ToInt32(Console.ReadLine());
+int b = num1 / 10;
+int a = b % 10;
 
-Console.Write($"{N} -> ");
+Console.WriteLine($"{num1} -> {a}");
+Console.WriteLine("");
 
-while(index < N - 1){
-    Console.Write($"{index = index + 2}, ");    
+// Задача 13: Напишите программу, которая выводит третью цифру заданного числа или сообщает, что третьей цифры нет.
+// 645 -> 5
+// 78 -> третьей цифры нет
+// 32679 -> 6
+
+Console.WriteLine("Задача 13.");
+Console.WriteLine("Введите число");
+
+int num2 = Convert.ToInt32(Console.ReadLine());
+string l = Convert.ToString(num2);
+int len = l.Length;
+
+if (l.Length >= 3){
+    Console.WriteLine($"{num2} -> {l[2]}");
 }
-Console.WriteLine($"");
+else{
+    Console.WriteLine("третьей цифры нет");
+}
+Console.WriteLine("");
+
+// Задача 15: Напишите программу, которая принимает на вход цифру, обозначающую день недели, и проверяет, является ли этот день выходным.
+// 6 -> да
+// 7 -> да
+// 1 -> нет
+
+Console.WriteLine("Задача 15.");
+Console.WriteLine("Введите цифру обозначающую день недели: ");
+
+string[] week = {"Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"};
+
+int num3 = Convert.ToInt32(Console.ReadLine());
+if (num3 <= 7 && num3 >= 1){
+    if(num3 <= 5 && num3 >= 1){
+        Console.WriteLine($"{week[num3 - 1]} - это будни");
+    }
+    else{
+        Console.WriteLine($"{week[num3 - 1]} - это выходной");
+    }
+}
+else{
+    Console.WriteLine($"{num3}? Нет столько дней в недели");
+}
+Console.WriteLine("");
