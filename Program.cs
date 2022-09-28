@@ -1,71 +1,64 @@
-﻿// Задача 19
-// Напишите программу, которая принимает на вход пятизначное число и 
-//проверяет, является ли оно палиндромом.
-// 14212 -> нет
-// 12821 -> да
-// 23432 -> да
+﻿//ВСЕ ЗАДАЧИ РЕШАЕМ ЧЕРЕЗ МЕТОДЫ
 
-Console.WriteLine("Задача 19");
-Console.Write("Ведите число для проверки, является ли оно палиндромом: ");
-int number = int.Parse(Console.ReadLine());
-int num = number;
-int lennumber = Convert.ToString(number).Length;
-int[] numbers = new int[lennumber];
+// Задача 25: Напишите цикл, который принимает на вход два числа (A и B) и 
+//возводит число A в натуральную степень B.
+// 3, 5 -> 243 (3⁵)
+// 2, 4 -> 16
 
-for (int i = 0; i <= lennumber - 1; i++){
-    numbers[i] = num % 10;
-    num = num / 10;
-}
+Console.WriteLine("Задача 25");
+Console.WriteLine("Введите число А: ");
+int A = int.Parse(Console.ReadLine()!);
+Console.WriteLine("Введите число B: ");
+int B = int.Parse(Console.ReadLine()!);
 
-for (int i = 0; i <= lennumber -1; i++){
-    if (numbers[i] != numbers[(lennumber - 1) - i]){
-        Console.WriteLine($"{number} -> нет");
-        break;
-    }
-    if (i == lennumber - 1){
-        Console.WriteLine($"{number} -> Да");
-    }
+Console.WriteLine($"{A} в степени - {B} -> {PowConv(A, B)}");
+
+int PowConv(int a, int b){
+    return (int)Math.Pow(a, b);
 }
 Console.WriteLine();
 
-// Задача 21
-// Напишите программу, которая принимает на вход координаты двух точек и
-// находит расстояние между ними в 3D пространстве.
-// A (3,6,8); B (2,1,-7), -> 15.84
-// A (7,-5, 0); B (1,-1,9) -> 11.53
 
-Console.WriteLine("Задача 21");
-Console.WriteLine("Введите координату x точки A:");
-int ax = int.Parse(Console.ReadLine());
-Console.WriteLine("Введите координату y точки A:");
-int ay = int.Parse(Console.ReadLine());
-Console.WriteLine("Введите координату z точки A:");
-int az = int.Parse(Console.ReadLine());
-Console.WriteLine("Введите координату x точки B:");
-int bx = int.Parse(Console.ReadLine());
-Console.WriteLine("Введите координату y точки B:");
-int by = int.Parse(Console.ReadLine());
-Console.WriteLine("Введите координату z точки B:");
-int bz = int.Parse(Console.ReadLine());
+// Задача 27: Напишите программу, которая принимает на вход число и выдаёт 
+//сумму цифр в числе.
+// 452 -> 11
+// 82 -> 10
+// 9012 -> 12
 
-double distance = Math.Sqrt(Math.Pow(ax - bx, 2) + Math.Pow(ay - by, 2)
-    + Math.Pow(az - bz, 2));
-Console.WriteLine($"{distance}");
+Console.WriteLine("Задача 27");
+Console.WriteLine("Введите число: ");
+int num = int.Parse(Console.ReadLine()!);
+Console.WriteLine($"{num} -> {SumNum(num)}");
+
+int SumNum(int a){
+    int b = a;
+    int sum = 0;
+    for(int i = 1; b != 0; i++){
+        sum = sum + (b%10);
+        b = b/10;
+    }
+    return sum;
+}   
 Console.WriteLine();
 
-// Задача 23
-// Напишите программу, которая принимает на вход число (N) и выдаёт таблицу
-// кубов чисел от 1 до N.
-// 3 -> 1, 8, 27
-// 5 -> 1, 8, 27, 64, 125
 
-Console.WriteLine("Задача 23");
-Console.Write("Введите число N, где N определяет вывод кубов от 1 до N: ");
-int n = int.Parse(Console.ReadLine());
+// Задача 29: Напишите программу, которая задаёт массив из 8 рандомных элементов
+// и выводит их на экран.
+// 1, 2, 5, 7, 19 -> [1, 2, 5, 7, 19]
+// 6, 1, 33 -> [6, 1, 33]
 
-Console.Write($"{n} -> ");
+Console.WriteLine("Задача 29");
+Console.WriteLine($" -> [{String.Join(", ", GenArray())}]");
 
-for (int i = 1; i <= n; i++){
-    Console.Write($"{Math.Pow(i, 3)}, ");
+int[] GenArray(){
+    int[] a = new int[8];
+    for(int i = 0; i < a.Length; i++){
+        //Console.Write($"{i}/{a.Length}.Введите рандомный элемент для добавления в массив:");
+        //int num = int.Parse(Console.ReadLine()!);
+        int num = new Random().Next(0, 100);
+        a[i] = num;
+    }
+    Console.Write($"{String.Join(", ", a)}");
+    return (int[])a;
 }
 Console.WriteLine();
