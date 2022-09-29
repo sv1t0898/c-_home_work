@@ -11,10 +11,21 @@ int A = int.Parse(Console.ReadLine()!);
 Console.WriteLine("Введите число B: ");
 int B = int.Parse(Console.ReadLine()!);
 
-Console.WriteLine($"{A} в степени - {B} -> {PowConv(A, B)}");
+// Console.WriteLine($"1.{A} в степени - {B} -> {PowConv(A, B)}");
+Console.WriteLine($"2.{A} в степени - {B} -> {PowConvCycle(A, B)}");
 
-int PowConv(int a, int b){
-    return (int)Math.Pow(a, b);
+// double PowConv(int a, int b){
+//     return (double)Math.Pow(a, b);
+// }
+// Console.WriteLine();
+
+double PowConvCycle(int a, int b){
+    double pow = a;
+    for(int i = 1; i < b; i++){
+        pow = pow * a;
+    }
+    return pow;
+
 }
 Console.WriteLine();
 
