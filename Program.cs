@@ -1,56 +1,108 @@
-﻿// Задача 41: Пользователь вводит с клавиатуры M чисел. Посчитайте, сколько чисел больше 0 ввёл пользователь.
-// 0, 7, 8, -2, -2 -> 2
-// 1, -7, 567, 89, 223-> 4
+﻿// Задача 47. Задайте двумерный массив размером m×n, заполненный случайными целыми числами.
+// m = 3, n = 4.
+// 1 7 -2 -85
+// 1 -3 8 -9
+// 8 7 -7 9
 
-Console.WriteLine("Задача 41");
-int[] array = GenArray();
-int index = 0;
+Console.WriteLine("Задача 47.");
 
-for (int i = 0; i < array.Length; i++){
-    if (array[i] > 0){
-        index++;
-    }
+int row1 = new Random().Next(1, 10);
+int columns1 = new Random().Next(1, 10);
+int minValu1 = new Random().Next(-99, 1);
+int maxValu1 = new Random().Next(1, 99);
+
+Console.WriteLine($"m = {row1}, n = {columns1}.");
+int[,] array1 = GetArray(row1, columns1, minValu1, maxValu1);
+PrintArray(array1); 
+
+Console.WriteLine();
+
+// Задача 50. Напишите программу, которая на вход принимает позиции элемента в 
+// двумерном массиве, и возвращает значение этого элемента или же указание, что такого элемента нет.
+// Например, задан массив:
+// 1 4 7 2
+// 5 9 2 3
+// 8 4 2 4
+// i = 4, j = 2 -> такого числа в массиве нет
+// i = 1, j = 2 -> 2
+
+Console.WriteLine("Задача 50.");
+
+Console.Write("Введите номер строки: ");
+int posrow = int.Parse(Console.ReadLine()!);
+Console.Write("Введите номер колонки: ");
+int poscolumn = int.Parse(Console.ReadLine()!);
+
+int rows2 = new Random().Next(3, 11);
+int columns2 = new Random().Next(3, 11);
+int minVal2 = new Random().Next(-99, 1);
+int maxVal2 = new Random().Next(1, 99);
+
+
+int[,] array2 = GetArray(rows2, columns2, minVal2, maxVal2);
+PrintArray(array2); 
+
+if (posrow <= array2.GetLength(0) && poscolumn <= array2.GetLength(1)){
+    Console.WriteLine($"i = {posrow}, j = {poscolumn} -> {array2[posrow, poscolumn]}");
 }
-
-Console.WriteLine($"[{String.Join(",", array)}] -> {index}");
-
-int[] GenArray(){
-    Console.Write("Введите значене М: ");
-    int[] array = new int[int.Parse(Console.ReadLine()!)];
-    Console.WriteLine("Введите ряд чисел: ");
-    for (int i = 0; i < array.Length; i++){
-        array[i] = int.Parse(Console.ReadLine()!);  
-    }
-    return array; 
+else{
+    Console.WriteLine($"i = {posrow}, j = {poscolumn} -> такого числа в массиве нет");
 }
 
 Console.WriteLine();
 
-// Задача 43: Напишите программу, которая найдёт точку пересечения двух прямых, 
-//заданных уравнениями y = k1 * x + b1, y = k2 * x + b2; значения b1, k1, b2 и k2 задаются пользователем.
-// b1 = 2, k1 = 5, b2 = 4, k2 = 9 -> (-0,5; -0,5)
+// Задача 52. Задайте двумерный массив из целых чисел. Найдите среднее арифметическое 
+// элементов в каждом столбце.
+// Например, задан массив:
+// 1 4 7 2
+// 5 9 2 3
+// 8 4 2 4
+// Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.
 
-Console.WriteLine("Задача 43");
-double[] bk1 = GetCoordinates(1);
-double[] bk2 = GetCoordinates(2);
-Console.Write($"b1 = {bk1[0]}, k1 = {bk1[1]}, b2 = {bk2[0]}, k2 = {bk2[1]} -> ");
-Console.WriteLine($"({String.Join("; ", FindCoordinates(bk1, bk2))})");
+Console.WriteLine("Задача 52.");
 
-double[] GetCoordinates(int index_b_k){
-    double[] array = new double[2];
-    string xy = "bk";
-    for (int i = 0; i < array.Length; i++){
-        Console.WriteLine($"Задайте значение {xy[i]}{index_b_k}: ");
-        array[i] = double.Parse(Console.ReadLine()!);  
+int row3 = new Random().Next(3, 10);
+int column3 = new Random().Next(3, 10);
+int minVal3 = new Random().Next(0, 10);
+int maxVal3 = new Random().Next(10, 20);
+
+int[,] array3 = GetArray(row3, column3, minVal3, maxVal3);
+double[] arithmetic_mean = GetArithmeticMean(array3);
+
+Console.WriteLine("Задан массив:");
+PrintArray(array3);
+Console.WriteLine($"Среднее арифметическое каждого столбца: {String.Join("; ", arithmetic_mean)}");
+
+Console.WriteLine();
+
+double[] GetArithmeticMean(int[,] array){
+    double[] arr = new double[array.GetLength(1)];
+    for (int i = 0; i < array.GetLength(1); i++){
+        int divider = 0;
+        for (int j = 0; j < array.GetLength(0); j++){
+            arr[i] += array[j, i];
+            divider++;
+        }
+        arr[i] /= divider;
     }
-    return array; 
+    return arr;
 }
 
-double[] FindCoordinates(double[] xy1, double[] xy2){
-    double x = (xy1[0] - xy2[0])/((-xy1[1]) - (-xy2[1]));
-    double y = xy2[1] * x + xy2[0];
-    double[] array = new double[2] {x,y};
+int[,] GetArray(int m, int n, int minValue, int maxValue){
+    int[,] array = new int[m, n];
+    for (int i = 0; i < array.GetLength(0); i++){
+        for (int j = 0; j < array.GetLength(1); j++){
+            array[i, j] = new Random().Next(minValue, maxValue);
+        }
+    }
     return array;
 }
 
-Console.WriteLine();
+void PrintArray(int[,] array){
+    for (int i = 0; i < array.GetLength(0); i++){
+        for (int j = 0; j < array.GetLength(1); j++){
+            Console.Write($" {array[i, j]} ");
+        }
+        Console.WriteLine();
+    }
+}
